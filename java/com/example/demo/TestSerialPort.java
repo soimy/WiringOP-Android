@@ -20,7 +20,7 @@ import com.example.wiringop.SerialControl;
 
 public class TestSerialPort extends Activity{
     private static final String TAG = "TestSerial";
-    private static final String SERIAL_PORT_PATH = "/dev/ttyS4";
+    private static final String SERIAL_PORT_PATH = "/dev/ttyS0";
     private static final int SERIAL_PORT_BAUDRATE = 9600;
 
     private static final String SEND_CMD="112233445566";

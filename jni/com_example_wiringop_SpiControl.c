@@ -86,7 +86,7 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPIDataRW
     LOGI("----lee aftercdata2 = %x\n", cdata[2]);
     LOGI("----lee aftercdata3 = %x\n", cdata[3]);
 
-    (*env)->ReleaseByteArrayElements(env, data, cdata, 1);
+    (*env)->ReleaseByteArrayElements(env, data, (jbyte *)cdata, 1);
 
     LOGI("----lee ret = %d\n", ret);
 
