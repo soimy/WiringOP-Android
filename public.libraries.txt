@@ -1,0 +1,2 @@
+libOpenCL.so
+libWiringOP
