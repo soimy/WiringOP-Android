@@ -173,8 +173,10 @@ JNIEXPORT void JNICALL Java_com_example_wiringop_SerialControl_serialPutchar
 JNIEXPORT void JNICALL Java_com_example_wiringop_SerialControl_serialPuts
   (JNIEnv *env, jclass type, jint fd , jstring s)
 {
-    write(fd, s, strlen(s));
-
+    const char *nativeString = (*env)->GetStringUTFChars(env, s, 0);
+    write(fd, nativeString, strlen(s));
+    (*env)->ReleaseStringUTFChars(env, s, nativeString);
+    LOGE ("[serialPuts] s = %s!\n", nativeString);
     return;
 }
 
@@ -206,7 +208,7 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_SerialControl_serialGetchar
 
     if(read(fd, &x, 1) != 1)
         return -1;
-
+    LOGE ("[serialGetchar] x = %#x!\n", x);
     return ((int)x) & 0xFF;
 }
 

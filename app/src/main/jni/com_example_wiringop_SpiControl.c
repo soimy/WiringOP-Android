@@ -30,10 +30,13 @@
 // Variables as they need to be passed as pointers later on
 static const char       *spiDev0  = "/dev/spidev0.0";
 static const char       *spiDev1  = "/dev/spidev1.0";
+static const char       *spiDev2  = "/dev/spidev2.0";
+static const char       *spiDev3  = "/dev/spidev3.0";
+static const char       *spiDev4  = "/dev/spidev4.0";
 static const uint8_t    spiBPW   = 8;
 static const uint16_t   spiDelay = 0;
-static uint32_t         spiSpeeds [2];
-static int              spiFds [2];
+static uint32_t         spiSpeeds;
+static int              spiFds;
 
 /*
  * Class:     com_example_orangepi_api_SpiControl
@@ -43,7 +46,7 @@ static int              spiFds [2];
 JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPIGetFd
     (JNIEnv *env, jclass type, jint channel)
 {
-    return spiFds[channel & 1];
+    return spiFds;
 }
 
 /*
@@ -75,18 +78,18 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPIDataRW
     spi.rx_buf        = (unsigned long)cdata;
     spi.len           = len;
     spi.delay_usecs   = spiDelay;
-    spi.speed_hz      = spiSpeeds [channel];
+    spi.speed_hz      = spiSpeeds;
     spi.bits_per_word = spiBPW;
 
-    LOGI("----lee spiFds[channel] = %d\n", spiFds[channel]);
-    ret = ioctl (spiFds[channel], SPI_IOC_MESSAGE(1), &spi);
+    LOGI("----lee spiFds[channel] = %d\n", spiFds);
+    ret = ioctl (spiFds, SPI_IOC_MESSAGE(1), &spi);
 
     LOGI("----lee aftercdata0 = %x\n", cdata[0]);
     LOGI("----lee aftercdata1 = %x\n", cdata[1]);
     LOGI("----lee aftercdata2 = %x\n", cdata[2]);
     LOGI("----lee aftercdata3 = %x\n", cdata[3]);
 
-    (*env)->ReleaseByteArrayElements(env, data, cdata, 1);
+    (*env)->ReleaseByteArrayElements(env, data, (jbyte *)cdata, 1);
 
     LOGI("----lee ret = %d\n", ret);
 
@@ -100,22 +103,31 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPIDataRW
  * Signature: (III)I
  */
 JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPISetupMode
-    (JNIEnv *env, jclass type, jint channel, jint speed, jint mode)
+    (JNIEnv *env, jclass type, jint channel, jint port, jint speed, jint mode)
 {
     int fd;
-    char * dev;
-
+    static char dev[15];
+    LOGI("csy ---------------------------------- \n");
     mode &= 3;	// Mode is 0, 1, 2 or 3
-    channel &= 1;	// Channel is 0 or 1
+    sprintf(dev, "/dev/spidev%i.%i", channel, port);
+    LOGI("csy ---------------------------------- cccc dev = %s\n", dev);
+    if(access(dev,W_OK)<0)
+        LOGE("%s 不可写.", dev);
+    else
+        LOGE("%s 可写.", dev);
 
-    if ((fd = open (channel == 0 ? spiDev0 : spiDev1, O_RDWR)) < 0){
+    if(access(dev,R_OK)<0)
+        LOGE("%s 不可读取.", dev);
+    else
+        LOGE("%s 可读取.", dev);
+
+    if ((fd = open (dev, O_RDWR)) < 0){
         LOGI("Unable to open SPI device %s\n", dev);
 
         return -1;
     }
-
-    spiSpeeds[channel] = speed;
-    spiFds [channel] = fd;
+    spiSpeeds = speed;
+    spiFds = fd;
 
     // Set SPI parameters.
     if (ioctl (fd, SPI_IOC_WR_MODE, &mode) < 0){
@@ -150,7 +162,7 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPISetup
 {
     int fd ;
     int spiMode = 0;
-
+    const char *dev;
     channel &= 1 ;
     if(access(spiDev1,W_OK)<0)
         LOGE("spiDev1不可写.");
@@ -162,11 +174,24 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPISetup
     else
         LOGE("spiDev1可读取.");
 
-    if ((fd = open (channel == 0 ? spiDev0 : spiDev1, O_RDWR)) < 0)
+    switch (channel) {
+        case 0:
+            dev = spiDev0;
+        case 1:
+            dev = spiDev1;
+        case 2:
+            dev = spiDev2;
+        case 3:
+            dev = spiDev3;
+        case 4:
+            dev = spiDev4;
+    }
+
+    if ((fd = open (dev, O_RDWR)) < 0)
         return -1;
 
-    spiSpeeds [channel] = speed;
-    spiFds    [channel] = fd;
+    spiSpeeds = speed;
+    spiFds  = fd;
 
 // Set SPI parameters.
 //	Why are we reading it afterwriting it? I've no idea, but for now I'm blindly

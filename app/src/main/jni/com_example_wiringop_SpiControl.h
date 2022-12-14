@@ -29,7 +29,7 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPIDataRW
  * Signature: (III)I
  */
 JNIEXPORT jint JNICALL Java_com_example_wiringop_SpiControl_wiringPiSPISetupMode
-  (JNIEnv *, jclass, jint, jint, jint);
+  (JNIEnv *, jclass, jint, jint, jint, jint);
 
 /*
  * Class:     com_example_orangepi_api_SpiControl

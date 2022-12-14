@@ -8,21 +8,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-        <EditText
-            android:id="@+id/i2c_port_text"
+        <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="/dev/i2c-2" />
+            android:id="@+id/sn_i2c"/>
         <EditText
             android:id="@+id/i2c_addr_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0x10" />
+            android:text="0x38" />
         <Button
             android:id="@+id/setup_i2c_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="初始化" />
+            android:text="Open" />
     </LinearLayout>
 
     <LinearLayout
@@ -33,7 +32,7 @@
             android:id="@+id/i2c_reg_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="外设寄存器地址："/>
+            android:text="Reg："/>
         <EditText
             android:id="@+id/i2c_reg_text"
             android:layout_width="wrap_content"
@@ -51,7 +50,7 @@
             android:id="@+id/read_i2c_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="读取" />
+            android:text="Read byte" />
 
         <TextView
             android:id="@+id/read_i2c_tv"
@@ -68,7 +67,7 @@
             android:id="@+id/write_i2c_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="写入" />
+            android:text="Write Byte" />
         <EditText
             android:id="@+id/i2c_value_text"
             android:layout_width="wrap_content"
@@ -84,8 +83,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical" >
-
-
 
         <ScrollView
             android:id="@+id/scroller"

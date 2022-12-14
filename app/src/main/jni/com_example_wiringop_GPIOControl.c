@@ -28,7 +28,7 @@
 #define LOW             0
 #define HIGH            1
 
-#define BUFFER_MAX    3
+#define BUFFER_MAX    4
 #define DIRECTION_MAX 48
 
 /*
@@ -51,17 +51,17 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_GPIOControl_doExport
 
     if (fd < 0) {
        LOGE("Failed to open export for writing!\n");
-        return(0);
+        return -1;
     }
     LOGE("export pin[%d] surcess!\n", gpio);
     len = snprintf(buffer, BUFFER_MAX, "%d", gpio);
     if (write(fd, buffer, len) < 0) {
         LOGE("Fail to export gpio!\n");
-        return 0;
+        return -1;
     }
     fsync(fd);
     close(fd);
-    return 1;
+    return 0;
 }
 
 /*
@@ -93,16 +93,16 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_GPIOControl_pinMode
         fd = open(path, O_WRONLY);
         if (fd < 0) {
             LOGE("failed to open gpio direction for writingaa!\n");
-            return 0;
+            return -1;
         }
 
         if (write(fd, &dir_str[direction == IN ? 0 : 3], direction == IN ? 2 : 3) < 0) {
            // LOGE("failed to set direction!\n");
-            return 0;
+            return -1;
         }
         fsync(fd);
         close(fd);
-        return 1;
+        return 0;
 }
 
 /*
@@ -161,16 +161,16 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_GPIOControl_digitalWrite
     fd = open(path, O_WRONLY);
     if (fd < 0) {
         LOGE("failed to open gpio value for writing!\n");
-        return 0;
+        return -1;
     }
 
     if (write(fd, &values_str[value == LOW ? 0 : 1], 1) < 0) {
       //  LOGE("failed to write value!\n");
-        return 0;
+        return -1;
     }
     fsync(fd);
     close(fd);
-    return 1;
+    return 0;
 }
 
 /*
@@ -188,15 +188,15 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_GPIOControl_doUnexport
     fd = open("/sys/class/gpio/unexport", O_WRONLY);
     if (fd < 0) {
         LOGE("Failed to open unexport for writing!\n");
-        return 0;
+        return -1;
     }
 
     len = snprintf(buffer, BUFFER_MAX, "%d", gpio);
     if (write(fd, buffer, len) < 0) {
         LOGE("Fail to unexport gpio!");
-        return 0;
+        return -1;
     }
     fsync(fd);
     close(fd);
-    return 1;
+    return 0;
 }

@@ -27,11 +27,13 @@ public class MainActivity extends Activity {
         Button serial_test_btn = (Button) findViewById(R.id.serial_test_btn);
         Button i2c_test_btn = (Button) findViewById(R.id.i2c_test_btn);
         Button spi_test_btn = (Button) findViewById(R.id.spi_test_btn);
+        Button pwm_test_btn = (Button) findViewById(R.id.pwm_test_btn);
 
         gpio_test_btn.setOnClickListener(ocl);
         serial_test_btn.setOnClickListener(ocl);
         i2c_test_btn.setOnClickListener(ocl);
         spi_test_btn.setOnClickListener(ocl);
+        pwm_test_btn.setOnClickListener(ocl);
 
         /******************************GPIO TEST****************************************/
 
@@ -148,6 +150,10 @@ public class MainActivity extends Activity {
                     break;
                 case R.id.spi_test_btn:
                     intent = new Intent(MainActivity.this, TestSpi.class);
+                    startActivity(intent);
+                    break;
+                case R.id.pwm_test_btn:
+                    intent = new Intent(MainActivity.this, TestPwm.class);
                     startActivity(intent);
                     break;
             }
