@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wiringop.wpiControl;
-import com.example.wiringop.SerialControl;
 
 public class TestSerialPort extends Activity{
     private static final String TAG = "TestSerial";
@@ -76,8 +75,7 @@ public class TestSerialPort extends Activity{
                     //mInfoView.append("open serial\n");
                     //fd = SerialControl.serialOpen(uart_dev, SERIAL_PORT_BAUDRATE);
                     fd = wpiControl.serialOpen(uart_dev, SERIAL_PORT_BAUDRATE);
-		    wpiControl.wiringPiSetup();
-
+                    wpiControl.wiringPiSetup();
                     if(fd > 0){
                         mCloseBtn.setEnabled(true);
                         mOpenBtn.setEnabled(false);

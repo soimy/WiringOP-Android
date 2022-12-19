@@ -1,11 +1,11 @@
 package com.example.demo;
 
+import android.util.Log;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import android.util.Log;
 
 /**
  * Android运行linux命令

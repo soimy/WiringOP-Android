@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.wiringop.I2cControl;
 import com.example.wiringop.wpiControl;
 
 public class TestI2c extends Activity {

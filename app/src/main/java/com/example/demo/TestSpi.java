@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.wiringop.SpiControl;
 import com.example.wiringop.wpiControl;
+
 import java.io.UnsupportedEncodingException;
 
 

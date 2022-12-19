@@ -4,15 +4,19 @@ package com.example.demo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.wiringop.GPIOControl;
+import com.example.wiringop.wpiControl;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.example.wiringop.wpiControl;
+import com.jraska.console.Console;
 
 
 public class TestGpio extends Activity implements CompoundButton.OnCheckedChangeListener{
@@ -21,6 +25,7 @@ public class TestGpio extends Activity implements CompoundButton.OnCheckedChange
     private String TAG = "TestGpio";
     Map<Integer, CheckBox> idToCb = new HashMap<Integer, CheckBox>();
     Map<Integer, Integer> idToIndex = new HashMap<Integer, Integer>();
+    Button bt_readall;
     private static final int[] CHECKBOX_IDS = {
             R.id.cb1, R.id.cb2, R.id.cb3, R.id.cb4, R.id.cb5,
             R.id.cb6, R.id.cb7, R.id.cb8, R.id.cb9, R.id.cb10,
@@ -99,7 +104,16 @@ public class TestGpio extends Activity implements CompoundButton.OnCheckedChange
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gpio_main);
-
+        bt_readall = findViewById(R.id.bt_readall);
+        bt_readall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String [] str = RootCmd.execRootCmd("gpiox readall");
+                Console.clear();
+                for(int i=0; i<str.length; i++)
+                    Console.writeLine(str[i]);
+            }
+        });
         for (int i = 0; i < CHECKBOX_IDS.length; i++) {
             CheckBox cb = (CheckBox) findViewById(CHECKBOX_IDS[i]);
             cb.setText(physNames[i]);
@@ -110,11 +124,9 @@ public class TestGpio extends Activity implements CompoundButton.OnCheckedChange
             idToIndex.put(CHECKBOX_IDS[i], i);
             idToCb.put(CHECKBOX_IDS[i], cb);
         }
-        Log.i(TAG, "test");
+        RootCmd.execRootCmdSilent("chmod 666 /dev/mem");
         wpiControl.wiringPiSetup();
-        Log.i(TAG, "test end");
     }
-
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
