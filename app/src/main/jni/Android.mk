@@ -66,7 +66,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_CFLAGS    += -DDEBUG -DANDROID -DTINKER_BOARD -Wno-unused-function -Wno-unused-parameter -Wno-uninitialized -Wno-unused-variable -Wno-macro-redefined
 
-LOCAL_LDLIBS    := -ldl -llog -lcutils
+LOCAL_LDLIBS    := -ldl -llog
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
@@ -106,7 +106,7 @@ LOCAL_SHARED_LIBRARIES := libwiringPi libwiringPiDev
 JNI_H_INCLUDE := libnativehelper/include_jni
 LOCAL_C_INCLUDES += \
         $(JNI_H_INCLUDE)
-LOCAL_CFLAGS    += -Wno-unused-function -Wno-unused-parameter -Wno-uninitialized -Wno-unused-variable
+LOCAL_CFLAGS    += -Wno-unused-function -Wno-unused-parameter -Wno-uninitialized -Wno-unused-variable -Wno-macro-redefined
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)

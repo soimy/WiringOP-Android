@@ -1,2 +1,5 @@
 app/src/main/jni/wiringOP/
 app/.cxx/
+.gradle/
+.idea/
+local.properties

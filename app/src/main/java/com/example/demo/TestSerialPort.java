@@ -75,7 +75,6 @@ public class TestSerialPort extends Activity{
                     //mInfoView.append("open serial\n");
                     //fd = SerialControl.serialOpen(uart_dev, SERIAL_PORT_BAUDRATE);
                     fd = wpiControl.serialOpen(uart_dev, SERIAL_PORT_BAUDRATE);
-                    wpiControl.wiringPiSetup();
                     if(fd > 0){
                         mCloseBtn.setEnabled(true);
                         mOpenBtn.setEnabled(false);
