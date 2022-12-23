@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.example.wiringop.wpiControl;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+
 public class TestSerialPort extends Activity{
     private static final String TAG = "TestSerial";
     private static final String SERIAL_PORT_PATH = "/dev/ttyS0";
@@ -23,7 +26,8 @@ public class TestSerialPort extends Activity{
     Button mOpenBtn;
     Button mCloseBtn;
     Button mSendMsgBtn;
-    TextView mInfoView, mInfoView1;
+    TextView mInfoView;
+    EditText et_baud;
     EditText et_serial_data;
     Handler handler;
     Spinner sn_uart_dev;
@@ -40,15 +44,14 @@ public class TestSerialPort extends Activity{
         mCloseBtn = (Button)findViewById(R.id.close_serial_port);
         mSendMsgBtn = (Button)findViewById(R.id.send_msg);
         mInfoView = (TextView)findViewById(R.id.testinfo);
-        mInfoView1 = (TextView)findViewById(R.id.testinfo1);
         et_serial_data = findViewById(R.id.et_serial_data);
         sn_uart_dev = findViewById(R.id.sn_uart_dev);
+        et_baud = findViewById(R.id.serial_baud);
         mOpenBtn.setOnClickListener(ocl);
         mCloseBtn.setOnClickListener(ocl);
         mSendMsgBtn.setOnClickListener(ocl);
 
         uartString = RootCmd.execRootCmd("ls /dev/ttyS*");
-//        uartString = uart.split("\\s+");
         ArrayAdapter<String> startAdapter = new ArrayAdapter<>(this,R.layout.item_dropdown,uartString);
         sn_uart_dev.setAdapter(startAdapter);
         sn_uart_dev.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -71,50 +74,51 @@ public class TestSerialPort extends Activity{
             switch (arg0.getId()) {
                 case R.id.open_serial_port:
                     mInfoView.setText("");
-                    mInfoView1.setText("");
-                    //mInfoView.append("open serial\n");
-                    //fd = SerialControl.serialOpen(uart_dev, SERIAL_PORT_BAUDRATE);
-                    fd = wpiControl.serialOpen(uart_dev, SERIAL_PORT_BAUDRATE);
+                    int baud = Integer.valueOf(et_baud.getText().toString());
+                    fd = wpiControl.serialOpen(uart_dev, baud);
                     if(fd > 0){
                         mCloseBtn.setEnabled(true);
                         mOpenBtn.setEnabled(false);
+                        mSendMsgBtn.setEnabled(true);
                         Toast toast=Toast.makeText(getApplicationContext(), "Open Success", Toast.LENGTH_SHORT);
                         toast.show();
+                        handler = new Handler();
+                        String str;
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                int size = wpiControl.serialDataAvail(fd);
+                                if( size > 0)
+                                {
+                                    byte [] b = new byte[size];
+                                    for(int i=0; i<size; i++)
+                                    {
+                                        int val = wpiControl.serialGetchar(fd);
+                                        b[i] = (byte)val;
+                                        if(val == '\0')
+                                            break;
+                                    }
+                                    String str = new String(b, StandardCharsets.UTF_8);
+                                    //String str = new StringBuffer().append((char)val).toString();
+                                    mInfoView.append(str);
+                                }
+                                handler.postDelayed(this,10);
+                            }
+                        }, 10);
                     }
                     else
                     {
                         Toast toast=Toast.makeText(getApplicationContext(), "Open Fail", Toast.LENGTH_SHORT);
+                        mSendMsgBtn.setEnabled(false);
                         toast.show();
                     }
-
-                    //mInfoView.append(fd >= 0 ?"open success\n":"open fail\n");
-                    //mInfoView1.append("aaaaa");
                     break;
                 case R.id.send_msg:
                     String msg = et_serial_data.getText().toString();
-                    mInfoView.append("send: " + msg + "\n");
+                    //mInfoView.append("send: " + msg + "\n");
                     if(fd >=0 ) {
                         wpiControl.serialPuts(fd, msg);
-                        handler = new Handler();
-                        String str;
-                        mInfoView1.append("receive： ");
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                int avail = wpiControl.serialDataAvail(fd);
-                                if(avail == -1)
-                                    return ;
-                                while(wpiControl.serialDataAvail(fd) > 0)
-                                {
-                                    int val = wpiControl.serialGetchar(fd);
-                                    String str = new StringBuffer().append((char)val).toString();
-                                    Log.i(TAG, "postDelayed... val = " + val + ", str = " + str);
-                                    mInfoView1.append(str);
-                                }
-                                //handler.postDelayed(this,50);
-                                mInfoView1.append("\n");
-                            }
-                        }, 200);
+
                     }
                     break;
                 case R.id.close_serial_port:
@@ -122,8 +126,8 @@ public class TestSerialPort extends Activity{
                         wpiControl.serialClose(fd);
                         mCloseBtn.setEnabled(false);
                         mOpenBtn.setEnabled(true);
+                        mSendMsgBtn.setEnabled(false);
                         mInfoView.setText("");
-                        mInfoView1.setText("");
                     }
                     fd = -1;
                     break;

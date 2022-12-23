@@ -251,13 +251,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <Button
+
+        <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_readall"
         android:layout_weight="1"
         android:text="gpio readall"/>
         <com.jraska.console.Console
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="375dp"
             />

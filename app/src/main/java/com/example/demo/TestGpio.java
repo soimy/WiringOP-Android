@@ -41,30 +41,47 @@ public class TestGpio extends Activity implements CompoundButton.OnCheckedChange
                     "   SCL.5", "GND     ",
                     "   PWM15", "RXD.0   ",
                     "     GND", "TXD.0   ",
-                    " CAN1_RX", "CAN2_TX ",
-                    " CAN1_TX", "GND     ",
-                    " CAN2_RX", "SDA.1   ",
-                    "    3.3V", "SCL.1   ",
+                    " GPIO4_B2", "GPIO0_D5 ",
+                    " GPIO4_B3", "GND     ",
+                    " GPIO0_D4", "GPIO1_D3   ",
+                    "    3.3V", "GPIO1_D2   ",
                     "SPI4_TXD", "GND     ",
                     "SPI4_RXD", "GPIO2_D4",
                     "SPI4_CLK", "SPI4_CS1",
-                    "     GND", "PWM1    ",
+                    "     GND", "GPIO1_A3    ",
             };
+//    int physToGpio_5[] =
+//            {
+//                    -1,       // 0
+//                    -1, -1,   // 1, 2
+//                    47, -1,   // 3, 4
+//                    46, -1,   // 5, 6
+//                    54, 131,   // 7, 8
+//                    -1, 132,   // 9, 10
+//                    138, 29,   // 11, 12
+//                    139, -1,   // 13, 14
+//                    28, 59,   // 15, 16
+//                    -1, 58,   // 17, 18
+//                    49, -1,   // 19, 20
+//                    48, 92,   // 21, 22
+//                    50, 52,   // 23, 24
+//                    -1, 35,   // 25, 26
+//            };
     int physToGpio_5[] =
             {
                     -1,       // 0
                     -1, -1,   // 1, 2
-                    47, -1,   // 3, 4
-                    46, -1,   // 5, 6
-                    54, 131,   // 7, 8
-                    -1, 132,   // 9, 10
+                    -1, -1,   // 3, 4
+                    -1, -1,   // 5, 6
+                    -1, -1,   // 7, 8
+                    -1, -1,   // 9, 10
                     138, 29,   // 11, 12
                     139, -1,   // 13, 14
                     28, 59,   // 15, 16
                     -1, 58,   // 17, 18
-                    49, -1,   // 19, 20
-                    48, 92,   // 21, 22
-                    50, 52,   // 23, 24
+                    -1, -1,   // 19, 20
+                    -1, 92,   // 21, 22
+                    -1, -1,   // 23, 24
                     -1, 35,   // 25, 26
             };
     int physToPin_5[] =
@@ -133,7 +150,6 @@ public class TestGpio extends Activity implements CompoundButton.OnCheckedChange
         int id = compoundButton.getId();
         cb_gpio = idToCb.get(id);
         pin = physToPin_5[idToIndex.get(id) + 1];
-        GPIOControl.doExport(pin);
         wpiControl.pinMode(pin, 1);
         if(cb_gpio.isChecked())
         {
