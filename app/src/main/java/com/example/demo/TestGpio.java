@@ -1,7 +1,7 @@
 package com.example.demo;
 
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -11,7 +11,6 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wiringop.GPIOControl;
 import com.example.wiringop.wpiControl;
 
 import java.util.HashMap;
@@ -19,7 +18,7 @@ import java.util.Map;
 import com.jraska.console.Console;
 
 
-public class TestGpio extends Activity implements CompoundButton.OnCheckedChangeListener{
+public class TestGpio extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     Handler handler;
     private String TAG = "TestGpio";

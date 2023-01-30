@@ -1,5 +1,6 @@
 package com.example.demo;
-import android.app.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,7 +19,7 @@ import com.example.wiringop.wpiControl;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class TestSerialPort extends Activity{
+public class TestSerialPort extends AppCompatActivity{
     private static final String TAG = "TestSerial";
     private static final String SERIAL_PORT_PATH = "/dev/ttyS0";
     private static final int SERIAL_PORT_BAUDRATE = 115200;

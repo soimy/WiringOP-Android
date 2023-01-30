@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 
-public class TestPwm extends Activity {
+public class TestPwm extends AppCompatActivity {
     private static final String TAG = "TestPwm";
     private EditText et_pwm_period;
     private SeekBar sb_pwm_duty;

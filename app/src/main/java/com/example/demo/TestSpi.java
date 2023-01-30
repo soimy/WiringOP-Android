@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +16,7 @@ import com.example.wiringop.wpiControl;
 import java.io.UnsupportedEncodingException;
 
 
-public class TestSpi extends Activity {
+public class TestSpi extends AppCompatActivity {
     private static final String TAG = "TestSpi";
     EditText spi_port_text;
     EditText spi_channel_text;

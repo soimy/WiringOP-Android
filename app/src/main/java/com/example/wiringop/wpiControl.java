@@ -3,7 +3,7 @@ package com.example.wiringop;
 public class wpiControl {
 
     static {
-        System.loadLibrary("wiringOP");
+        System.loadLibrary("WiringOP");
     }
     public final static native int wiringPiSetup();
     public final static native void pinMode(int pin, int mode);
