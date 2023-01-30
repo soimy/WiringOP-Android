@@ -81,9 +81,8 @@ LOCAL_SRC_FILES := \
 LOCAL_LDLIBS    := -ldl -llog
 LOCAL_SHARED_LIBRARIES := libwiringPi libwiringPiDev
 # Also need the JNI headers.
-JNI_H_INCLUDE := libnativehelper/include_jni
-LOCAL_C_INCLUDES += \
-        $(JNI_H_INCLUDE)
+#JNI_H_INCLUDE := libnativehelper/include_jni
+LOCAL_C_INCLUDES += libnativehelper/include_jni
 LOCAL_CFLAGS    += -Wno-unused-function -Wno-unused-parameter -Wno-uninitialized -Wno-unused-variable -Wno-macro-redefined
 include $(BUILD_SHARED_LIBRARY)
 

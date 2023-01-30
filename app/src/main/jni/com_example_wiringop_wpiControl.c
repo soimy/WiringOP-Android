@@ -29,7 +29,6 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiSetup
     LOGI("Entering wiringPiSetup");
     return wiringPiSetup();
 }
-
 /*
  * Class:     com_example_wiringop_wpiControl
  * Method:    pinMode
@@ -298,6 +297,37 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CSetupInte
     ret = wiringPiI2CSetupInterface(str, devId);
     (*env)->ReleaseStringUTFChars(env, device, str);
     return ret;
+}
+
+/*
+ * Class:     com_example_wiringop_wpiControl
+ * Method:    getGpioPhysToWpi
+ * Signature: ()[I
+ */
+JNIEXPORT  jint JNICALL Java_com_example_wiringop_wpiControl_getGpioInfo
+        (JNIEnv *env, jclass obj, jintArray javaArrWpi, jobjectArray javaArrPhysName )
+{
+    g_info gpio_info;
+    jint *physToWpi;
+    jstring physNames;
+
+    int ret = get_gpio_info(&gpio_info);
+    if(-1 == ret)
+        return -1;
+    physToWpi = (*env)->GetIntArrayElements(env, javaArrWpi, NULL);
+    int len = (*env)->GetArrayLength(env, javaArrWpi);
+    for(int i=0; i<len; i++){
+        physToWpi[i] = gpio_info.physToWpi[i];
+    }
+    (*env)->ReleaseIntArrayElements(env, javaArrWpi, physToWpi, 0);
+
+    jsize stringArrayLength = (*env)->GetArrayLength(env, javaArrPhysName);
+    for(int i=0; i<stringArrayLength; i++){
+        physNames = (*env)->NewStringUTF(env, gpio_info.physNames[i]);
+        (*env)->SetObjectArrayElement(env, javaArrPhysName,i,physNames);
+        (*env)->DeleteLocalRef(env, physNames);
+    }
+    return gpio_info.pin_max;
 }
 
 #ifdef __cplusplus

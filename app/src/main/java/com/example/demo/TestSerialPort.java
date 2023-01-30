@@ -1,9 +1,7 @@
 package com.example.demo;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -13,17 +11,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.wiringop.wpiControl;
-
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 public class TestSerialPort extends AppCompatActivity{
     private static final String TAG = "TestSerial";
-    private static final String SERIAL_PORT_PATH = "/dev/ttyS0";
-    private static final int SERIAL_PORT_BAUDRATE = 115200;
-
     Button mOpenBtn;
     Button mCloseBtn;
     Button mSendMsgBtn;
@@ -52,7 +45,8 @@ public class TestSerialPort extends AppCompatActivity{
         mCloseBtn.setOnClickListener(ocl);
         mSendMsgBtn.setOnClickListener(ocl);
 
-        uartString = RootCmd.execRootCmd("ls /dev/ttyS*");
+        uartString = RootCmd.execRootCmd("ls /dev/tty[A,S]*");
+
         ArrayAdapter<String> startAdapter = new ArrayAdapter<>(this,R.layout.item_dropdown,uartString);
         sn_uart_dev.setAdapter(startAdapter);
         sn_uart_dev.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

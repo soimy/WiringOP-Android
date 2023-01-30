@@ -191,6 +191,14 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CWriteReg1
 JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CSetup
   (JNIEnv *, jclass, jstring, jint);
 
+/*
+ * Class:     com_example_wiringop_wpiControl
+ * Method:    getGpioPhysToWpi
+ * Signature: ()[I
+ */
+JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_getGpioInfo
+        (JNIEnv *, jclass, jintArray javaArr);
+
 #ifdef __cplusplus
 }
 #endif

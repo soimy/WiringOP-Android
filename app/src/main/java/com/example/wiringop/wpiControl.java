@@ -32,4 +32,5 @@ public class wpiControl {
     public final static native int wiringPiI2CWriteReg16 (int fd, int reg, int value);
     public final static native int wiringPiI2CSetup (int devId);
     public final static native int wiringPiI2CSetupInterface  (String device, int devId);
+    public final static native int getGpioInfo(int[] arr, CharSequence[] strArr);
 }

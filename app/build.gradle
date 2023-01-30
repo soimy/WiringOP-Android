@@ -17,7 +17,7 @@ android {
         ndk{
             // moduleName "wiringOP" + "WiringOP"
             // ldLibs "log", "z", "m" // 添加android日志引用
-            abiFilters "arm64-v8a" //cpu的类型
+            abiFilters "armeabi-v7a", "arm64-v8a" //cpu的类型
         }
     }
 

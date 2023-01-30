@@ -162,6 +162,50 @@
                 android:layoutDirection="rtl"
                 />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_alignParentEnd="true"
+                android:id="@+id/cb27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_alignParentEnd="true"
+                android:id="@+id/cb29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_alignParentEnd="true"
+                android:id="@+id/cb31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_alignParentEnd="true"
+                android:id="@+id/cb33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                />
+        </RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -244,8 +288,27 @@
             android:id="@+id/cb26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+        <CheckBox
+            android:id="@+id/cb28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <CheckBox
+            android:id="@+id/cb30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <CheckBox
+            android:id="@+id/cb32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <CheckBox
+            android:id="@+id/cb34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
