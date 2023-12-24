@@ -3,10 +3,10 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.wiringop"
+        applicationId 'com.shader.wiringop'
         minSdk 27
         targetSdk 32
         versionCode 1
@@ -38,6 +38,9 @@ android {
             path file("src/main/jni/Android.mk")
         }
     }
+    namespace 'com.example.demo'
+    buildToolsVersion '33.0.2'
+    ndkVersion '25.2.9519653'
 }
 
 dependencies {
@@ -45,6 +48,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(path: ':WiringOPUnity')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'

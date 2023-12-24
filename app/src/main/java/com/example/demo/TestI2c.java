@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.wiringop.wpiControl;
+import com.jraska.wiringop.wpiControl;
 
 public class TestI2c extends AppCompatActivity {
     private static final String TAG = "TestI2c";

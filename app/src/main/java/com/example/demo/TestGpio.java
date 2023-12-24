@@ -4,15 +4,13 @@ package com.example.demo;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wiringop.wpiControl;
+import com.jraska.wiringop.wpiControl;
 
 import java.util.HashMap;
 import java.util.Map;

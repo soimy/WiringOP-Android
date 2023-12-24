@@ -1,0 +1,3 @@
+/Users/sym/Repo/WiringOP_android/WiringOPUnity/.cxx/Debug/4h464h24/x86/CMakeFiles/wiringopunity.dir
+/Users/sym/Repo/WiringOP_android/WiringOPUnity/.cxx/Debug/4h464h24/x86/CMakeFiles/edit_cache.dir
+/Users/sym/Repo/WiringOP_android/WiringOPUnity/.cxx/Debug/4h464h24/x86/CMakeFiles/rebuild_cache.dir

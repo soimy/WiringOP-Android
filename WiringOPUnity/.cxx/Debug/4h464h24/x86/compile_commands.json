@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/sym/Repo/WiringOP_android/WiringOPUnity/.cxx/Debug/4h464h24/x86",
+  "command": "/Users/sym/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=i686-none-linux-android28 --sysroot=/Users/sym/Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dwiringopunity_EXPORTS -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -fexceptions -frtti -stdlib=libc++ -g  -fno-limit-debug-info -fPIC -o CMakeFiles/wiringopunity.dir/wiringopunity.cpp.o -c /Users/sym/Repo/WiringOP_android/WiringOPUnity/src/main/cpp/wiringopunity.cpp",
+  "file": "/Users/sym/Repo/WiringOP_android/WiringOPUnity/src/main/cpp/wiringopunity.cpp"
+}
+]

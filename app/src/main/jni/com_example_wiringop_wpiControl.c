@@ -8,90 +8,90 @@
 #include <wiringSerial.h>
 #include <errno.h>
 #include <android/log.h>
-/* Header for class com_example_wiringop_wpiControl */
+/* Header for class com_jraska_wiringop_wpiControl */
 
 #define LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 #define LOG_TAG "wpiControl"
 
-#ifndef _Included_com_example_wiringop_wpiControl
-#define _Included_com_example_wiringop_wpiControl
+#ifndef _Included_com_jraska_wiringop_wpiControl
+#define _Included_com_jraska_wiringop_wpiControl
 #ifdef __cplusplus
 extern "C" {
 #endif
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiSetup
  * Signature: ()I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiSetup
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiSetup
  (JNIEnv *env, jclass obj) {
     LOGI("Entering wiringPiSetup");
     return wiringPiSetup();
 }
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    pinMode
  * Signature: (II)V
  */
-JNIEXPORT void JNICALL Java_com_example_wiringop_wpiControl_pinMode
+JNIEXPORT void JNICALL Java_com_jraska_wiringop_wpiControl_pinMode
  (JNIEnv *env, jclass obj, jint pin, jint mode)
 {
     return pinMode(pin, mode);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    pullUpDnControl
  * Signature: (II)V
  */
-JNIEXPORT void JNICALL Java_com_example_wiringop_wpiControl_pullUpDnControl
+JNIEXPORT void JNICALL Java_com_jraska_wiringop_wpiControl_pullUpDnControl
  (JNIEnv *env, jclass obj, jint pin, jint pud)
 {
     return pullUpDnControl(pin, pud);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    digitalRead
  * Signature: (I)I
  */
 JNIEXPORT jint
 
-JNICALL Java_com_example_wiringop_wpiControl_digitalRead
+JNICALL Java_com_jraska_wiringop_wpiControl_digitalRead
  (JNIEnv *env, jclass obj, jint pin)
 {
     return digitalRead(pin);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    digitalWrite
  * Signature: (II)V
  */
-JNIEXPORT void JNICALL Java_com_example_wiringop_wpiControl_digitalWrite
+JNIEXPORT void JNICALL Java_com_jraska_wiringop_wpiControl_digitalWrite
         (JNIEnv *env, jclass obj, jint pin, jint value)
 {
     digitalWrite(pin, value);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiSPIGetFd
  * Signature: (I)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiSPIGetFd
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiSPIGetFd
  (JNIEnv *env, jclass obj, jint channel)
 {
     return wiringPiSPIGetFd(channel);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiSPIDataRW
  * Signature: (I[BI)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiSPIDataRW
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiSPIDataRW
  (JNIEnv *env, jclass obj, jint channel, jbyteArray data, jint len) {
     unsigned char *cdata = NULL;
     int ret = -1;
@@ -103,31 +103,31 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiSPIDataRW
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiSPISetupMode
  * Signature: (IIII)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiSPISetupMode
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiSPISetupMode
  (JNIEnv *env, jclass obj, jint channel, jint port, jint speed, jint mode) {
     return wiringPiSPISetupMode(channel, port, speed, mode);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiSPISetup
  * Signature: (II)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiSPISetup
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiSPISetup
  (JNIEnv *env, jclass obj, jint channel, jint speed) {
     return wiringPiSPISetup(channel, speed);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    serialOpen
  * Signature: (Ljava/lang/String;I)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_serialOpen
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_serialOpen
  (JNIEnv *env, jclass obj, jstring device, jint baud) {
     const char *nativeString = (*env)->GetStringUTFChars(env, device, 0);
     int ret = serialOpen(nativeString, baud);
@@ -137,44 +137,44 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_serialOpen
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    serialClose
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_com_example_wiringop_wpiControl_serialClose
+JNIEXPORT void JNICALL Java_com_jraska_wiringop_wpiControl_serialClose
  (JNIEnv *env, jclass obj, jint fd)
 {
     serialClose(fd);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    serialFlush
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_com_example_wiringop_wpiControl_serialFlush
+JNIEXPORT void JNICALL Java_com_jraska_wiringop_wpiControl_serialFlush
  (JNIEnv *env, jclass obj, jint fd)
 {
     serialFlush(fd);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    serialPutchar
  * Signature: (IC)V
  */
-JNIEXPORT void JNICALL Java_com_example_wiringop_wpiControl_serialPutchar
+JNIEXPORT void JNICALL Java_com_jraska_wiringop_wpiControl_serialPutchar
         (JNIEnv *env, jclass obj, jint fd, jbyte c)
 {
     serialPutchar(fd, c);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    serialPuts
  * Signature: (ILjava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_com_example_wiringop_wpiControl_serialPuts
+JNIEXPORT void JNICALL Java_com_jraska_wiringop_wpiControl_serialPuts
         (JNIEnv *env, jclass obj, jint fd, jstring s)
 {
     const char *nativeString = (*env)->GetStringUTFChars(env, s, 0);
@@ -183,112 +183,112 @@ JNIEXPORT void JNICALL Java_com_example_wiringop_wpiControl_serialPuts
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    serialDataAvail
  * Signature: (I)I
  */
 JNIEXPORT jint
 
-JNICALL Java_com_example_wiringop_wpiControl_serialDataAvail
+JNICALL Java_com_jraska_wiringop_wpiControl_serialDataAvail
         (JNIEnv *env, jclass obj, jint fd)
 {
     return serialDataAvail(fd);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    serialGetchar
  * Signature: (I)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_serialGetchar
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_serialGetchar
  (JNIEnv *env, jclass obj, jint fd)
 {
     return serialGetchar(fd);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiI2CRead
  * Signature: (I)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CRead
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiI2CRead
  (JNIEnv *env, jclass obj, jint fd)
 {
     return wiringPiI2CRead(fd);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiI2CReadReg8
  * Signature: (II)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CReadReg8
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiI2CReadReg8
   (JNIEnv *env, jclass obj, jint fd, jint reg)
 {
     return wiringPiI2CReadReg8(fd, reg);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiI2CReadReg16
  * Signature: (II)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CReadReg16
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiI2CReadReg16
   (JNIEnv *env, jclass obj, jint fd, jint reg)
 {
     return wiringPiI2CReadReg16(fd, reg);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiI2CWrite
  * Signature: (II)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CWrite
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiI2CWrite
   (JNIEnv *env, jclass obj, jint fd, jint data)
 {
     return wiringPiI2CWrite(fd, data);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiI2CWriteReg8
  * Signature: (III)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CWriteReg8
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiI2CWriteReg8
   (JNIEnv *env, jclass obj, jint fd, jint reg, jint data)
 {
     return wiringPiI2CWriteReg8(fd, reg, data);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiI2CWriteReg16
  * Signature: (III)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CWriteReg16
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiI2CWriteReg16
   (JNIEnv *env, jclass obj, jint fd, jint reg, jint data)
 {
     return wiringPiI2CWriteReg16(fd, reg, data);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiI2CSetup
  * Signature: (Ljava/lang/String;I)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CSetup
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiI2CSetup
   (JNIEnv *env, jclass obj, jint devId)
 {
     return wiringPiI2CSetup(devId);
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    wiringPiI2CSetupInterface
  * Signature: (Ljava/lang/String;I)I
  */
-JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CSetupInterface
+JNIEXPORT jint JNICALL Java_com_jraska_wiringop_wpiControl_wiringPiI2CSetupInterface
         (JNIEnv *env, jclass obj, jstring device, jint devId)
 {
     const char *str;
@@ -300,11 +300,11 @@ JNIEXPORT jint JNICALL Java_com_example_wiringop_wpiControl_wiringPiI2CSetupInte
 }
 
 /*
- * Class:     com_example_wiringop_wpiControl
+ * Class:     com_jraska_wiringop_wpiControl
  * Method:    getGpioPhysToWpi
  * Signature: ()[I
  */
-JNIEXPORT  jint JNICALL Java_com_example_wiringop_wpiControl_getGpioInfo
+JNIEXPORT  jint JNICALL Java_com_jraska_wiringop_wpiControl_getGpioInfo
         (JNIEnv *env, jclass obj, jintArray javaArrWpi, jobjectArray javaArrPhysName )
 {
     g_info gpio_info;

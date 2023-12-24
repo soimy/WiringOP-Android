@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "/Users/sym/Repo/WiringOP_android/WiringOPUnity/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/sym/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/sym/Repo/WiringOP_android/WiringOPUnity/.cxx/RelWithDebInfo/521o6471/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/sym/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/sym/Repo/WiringOP_android/WiringOPUnity/.cxx/RelWithDebInfo/521o6471/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "wiringopunity::@6890427a1f51a3e7e1df": {
+      "artifactName": "wiringopunity",
+      "abi": "x86",
+      "output": "/Users/sym/Repo/WiringOP_android/WiringOPUnity/build/intermediates/cxx/RelWithDebInfo/521o6471/obj/x86/libwiringopunity.so",
+      "runtimeFiles": []
+    }
+  }
+}

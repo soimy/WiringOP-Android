@@ -79,7 +79,7 @@ LOCAL_MODULE    := libWiringOP
 LOCAL_SRC_FILES := \
     com_example_wiringop_wpiControl.c
 LOCAL_LDLIBS    := -ldl -llog
-LOCAL_SHARED_LIBRARIES := libwiringPi libwiringPiDev
+LOCAL_SHARED_LIBRARIES := libwiringPi libwiringPiDev libgpio
 # Also need the JNI headers.
 #JNI_H_INCLUDE := libnativehelper/include_jni
 LOCAL_C_INCLUDES += libnativehelper/include_jni
@@ -100,3 +100,16 @@ LOCAL_LDLIBS := -llog
 LOCAL_SHARED_LIBRARIES := libwiringPi libwiringPiDev
 
 include $(BUILD_EXECUTABLE)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE    := libgpio
+LOCAL_SRC_FILES := wiringOP/gpio/gpio.c wiringOP/gpio/readall.c
+LOCAL_C_INCLUDES += \
+    $(LOCAL_PATH)/wiringOP/wiringPi \
+    $(LOCAL_PATH)/wiringOP/devLib
+
+LOCAL_MODULE_TAGS := optional
+LOCAL_CFLAGS    += -UNDEBUG -DANDROID  -DTINKER_BOARD -Wno-unused-function -Wno-unused-parameter -Wno-uninitialized -Wno-unused-variable -Wno-unreachable-code-loop-increment
+LOCAL_LDLIBS := -llog
+LOCAL_SHARED_LIBRARIES := libwiringPi libwiringPiDev
+include $(BUILD_SHARED_LIBRARY)

@@ -3,3 +3,6 @@ app/.cxx/
 .gradle/
 .idea/
 local.properties
+
+#Mac stuff
+.DS_Store
